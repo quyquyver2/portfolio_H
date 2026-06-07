@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tổng kết - Lê Thị Thuý Hường</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            -webkit-text-size-adjust: 100%;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f6f8;
+        }
+
+        header {
+            background: white;
+            color: #1a1a1a;
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem 2rem;
+            position: relative;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #1a1a1a;
+            font-size: 1.5rem;
+            cursor: pointer;
+            position: absolute;
+            right: 2rem;
+        }
+
+        .menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .menu a {
+            color: #1a1a1a;
+            text-decoration: none;
+            transition: opacity 0.3s;
+            font-weight: 500;
+            font-size: 1.05rem;
+            position: relative;
+        }
+
+        .menu a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 0;
+            height: 2px;
+            background: #27AE60;
+            transition: width 0.3s ease;
+        }
+
+        .menu a.active::after {
+            width: 100%;
+        }
+
+        .menu a:hover {
+            opacity: 0.7;
+        }
+
+        .summary-hero {
+            background: linear-gradient(135deg, #f8f9fb 0%, #f0f2f6 50%, #e8ecf2 100%);
+            padding: 3.5rem 1rem 4rem;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(44, 62, 80, 0.08);
+        }
+
+        .summary-hero::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(44, 62, 80, 0.06) 0%, transparent 65%);
+            pointer-events: none;
+        }
+
+        .summary-hero-inner {
+            width: 96%;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .summary-hero-text {
+            flex: 1;
+            text-align: center;
+            max-width: 720px;
+        }
+
+        .summary-hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 1.25rem;
+            letter-spacing: 0.5px;
+        }
+
+        .summary-hero-subtitle {
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .summary-hero-list {
+            list-style: none;
+            text-align: left;
+            display: inline-block;
+            margin: 0 auto;
+        }
+
+        .summary-hero-list li {
+            font-size: 1.2rem;
+            color: #444;
+            line-height: 1.8;
+            margin-bottom: 0.5rem;
+            padding-left: 0.25rem;
+        }
+
+        .summary-hero-image {
+            flex-shrink: 0;
+            width: 280px;
+            height: 220px;
+            object-fit: cover;
+            object-position: left center;
+            border-radius: 12px;
+            opacity: 0.95;
+        }
+
+        .summary-page {
+            width: 96%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2.5rem 0 3rem;
+        }
+
+        .summary-content {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+            padding: 2.5rem 3rem;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .summary-intro {
+            font-size: 1.35rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .summary-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .summary-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .summary-section h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 1.25rem;
+            padding-left: 1rem;
+            border-left: 4px solid #27AE60;
+        }
+
+        .summary-section p {
+            font-size: 1.35rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .summary-section p:last-child {
+            margin-bottom: 0;
+        }
+
+        .summary-section strong {
+            color: #333;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 1rem;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .footer-info {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 44px;
+                min-height: 44px;
+                z-index: 102;
+            }
+
+            .menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.98);
+                flex-direction: column;
+                gap: 0;
+                padding: 0.5rem 0;
+                z-index: 101;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            }
+
+            .menu.active {
+                display: flex;
+            }
+
+            .menu li {
+                width: 100%;
+            }
+
+            .menu a {
+                display: block;
+                padding: 0.85rem 1.25rem;
+                border-bottom: 1px solid rgba(0,0,0,0.08);
+                font-size: 1rem;
+            }
+
+            nav {
+                padding: 0.75rem 1rem;
+            }
+
+            .menu-toggle {
+                right: 1rem;
+            }
+
+            .summary-hero {
+                padding: 2rem 0.75rem 2.5rem;
+            }
+
+            .summary-hero-inner {
+                width: 100%;
+                flex-direction: column-reverse;
+                gap: 1.5rem;
+            }
+
+            .summary-hero-text {
+                max-width: 100%;
+            }
+
+            .summary-hero h1 {
+                font-size: 2rem;
+            }
+
+            .summary-hero-subtitle {
+                font-size: 0.85rem;
+                letter-spacing: 0.8px;
+                line-height: 1.6;
+            }
+
+            .summary-hero-list {
+                width: 100%;
+                text-align: left;
+            }
+
+            .summary-hero-list li {
+                font-size: 1rem;
+                line-height: 1.7;
+            }
+
+            .summary-hero-image {
+                width: 100%;
+                max-width: 100%;
+                height: 160px;
+                border-radius: 10px;
+            }
+
+            .summary-page {
+                width: 100%;
+                padding: 1.25rem 0.75rem 2rem;
+            }
+
+            .summary-content {
+                padding: 1.5rem 1.25rem;
+                border-radius: 12px;
+            }
+
+            .summary-intro {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+                padding-bottom: 1.5rem;
+            }
+
+            .summary-section {
+                margin-bottom: 2rem;
+            }
+
+            .summary-section h2 {
+                font-size: 1.1rem;
+                padding-left: 0.75rem;
+            }
+
+            .summary-section p {
+                font-size: 1.05rem;
+            }
+
+            footer {
+                padding: 1.5rem 1rem;
+            }
+
+            footer p {
+                font-size: 0.85rem;
+                line-height: 1.6;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .summary-hero h1 {
+                font-size: 1.65rem;
+            }
+
+            .summary-hero-subtitle {
+                font-size: 0.78rem;
+            }
+
+            .summary-hero-list li {
+                font-size: 0.95rem;
+            }
+
+            .summary-content {
+                padding: 1.25rem 1rem;
+            }
+
+            .summary-intro,
+            .summary-section p {
+                font-size: 1rem;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <ul class="menu" id="navMenu">
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="about.html">Giới thiệu</a></li>
+                <li><a href="projects.html">Dự án</a></li>
+                <li><a href="summary.html" class="active">Tổng kết</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="summary-hero">
+        <div class="summary-hero-inner">
+            <div class="summary-hero-text">
+                <h1>Tổng kết</h1>
+                <p class="summary-hero-subtitle">
+                    HÀNH TRÌNH CỦA BẢN THÂN QUA HỌC PHẦN<br>
+                    VÀ DỰ ÁN PORTFOLIO
+                </p>
+                <ol class="summary-hero-list">
+                    <li>1. Những trải nghiệm và cảm nhận cá nhân khi thực hiện dự án</li>
+                    <li>2. Những kiến thức và kỹ năng đã học được</li>
+                    <li>3. Những điều tâm đắc và những thách thức đã gặp phải</li>
+                </ol>
+            </div>
+            <img src="image.png" alt="Y khoa" class="summary-hero-image">
+        </div>
+    </section>
+
+    <main class="summary-page">
+        <div class="summary-content">
+            <p class="summary-intro">
+                Nhìn lại cả một chặng đường đồng hành cùng học phần Nhập môn Công nghệ số và ứng dụng trí tuệ nhân tạo,
+                việc thực hành luyện tập, làm bài tập hàng tuần đã giúp em tự tay hoàn thiện trang Portfolio cá nhân này,
+                em cảm thấy bản thân đã có một sự "lột xác" thực sự về cả tư duy lẫn kỹ năng công nghệ.
+            </p>
+
+            <div class="summary-section">
+                <h2>1. Những kiến thức và kỹ năng quan trọng nhất đã học được</h2>
+                <p>
+                    Học phần này đã mang lại cho em hệ thống kiến thức và bộ kỹ năng số vô cùng thực tế mà trước đây chưa từng nghĩ tới:
+                </p>
+                <p>
+                    <strong>Về kiến thức:</strong> Em đã hiểu sâu sắc thế nào là "liêm chính học thuật" trong thời đại số
+                    thông qua việc nghiên cứu các văn bản chính sách lớn như Quy định kiểm soát đạo văn của UEH hay Khung năng lực AI của USSH.
+                    Từ đó, tự mình xây dựng được một "Bộ nguyên tắc cá nhân" giúp bản thân biết cách sử dụng AI sao cho đúng đắn và có đạo đức.
+                </p>
+                <p>
+                    <strong>Về kỹ năng:</strong> Em đã rèn luyện được Kỹ năng tương tác với AI (Prompt Engineering), học được cách viết chuỗi câu lệnh
+                    từ cơ bản đến nâng cao một cách hệ thống trên ChatGPT, biết cách phối hợp đa công cụ AI (như Midjourney, DALL-E, Canva)
+                    để thiết kế nên sản phẩm Infographic truyền thông hoàn chỉnh.
+                </p>
+            </div>
+
+            <div class="summary-section">
+                <h2>2. Điểm tâm đắc nhất</h2>
+                <p>
+                    Điều khiến em cảm thấy tâm đắc và tự hào nhất trong dự án này chính là học được cách làm chủ công nghệ.
+                    Từ những dữ liệu thô ban đầu do AI gợi ý, em biết áp dụng tư duy phản biện để sàng lọc, kiểm chứng,
+                    truy ngược tài liệu gốc và tự tay thiết kế lại toàn bộ để mang đậm dấu ấn cá nhân của mình.
+                    Cảm giác biến những ý tưởng khô khan thành một sản phẩm Infographic trực quan, sinh động thực sự rất tuyệt vời!
+                </p>
+            </div>
+
+            <div class="summary-section">
+                <h2>3. Những thách thức đã gặp phải khi xây dựng Portfolio</h2>
+                <p>
+                    <strong>Thách thức trong việc kiểm chứng thông tin:</strong> Giai đoạn đầu, em dễ bị cuốn theo những câu trả lời trơn tru của AI
+                    mà quên mất rủi ro AI tự bịa dữ liệu hoặc lỗi trích dẫn không chính xác. Em đã phải mất rất nhiều thời gian
+                    đối chiếu lại với các văn bản gốc để sửa đổi đầu ra.
+                </p>
+                <p>
+                    <strong>Sử dụng Google Site để thiết kế web:</strong> Đây là lần đầu tiên, em tiếp cận và sử dụng công cụ này,
+                    nên còn bỡ ngỡ và không biết phải bắt đầu từ đâu, thiết kế ra sao. Sau đó, em đã lên Youtube tham khảo rất nhiều video hướng dẫn,
+                    làm theo từng bước và dần dần hoàn thiện dự án này.
+                </p>
+                <p>
+                    <strong>Thách thức trong việc hoàn thiện bài tập:</strong> Đối với mỗi dự án nhỏ, em phải dành thời gian để biên tập lại từ đầu,
+                    bám sát theo yêu cầu đưa ra, chứ không lấy hoàn toàn nội dung từ những bài tập đã làm các tuần trước.
+                </p>
+            </div>
+
+            <div class="summary-section">
+                <h2>4. Lời kết</h2>
+                <p>
+                    Vượt qua những thách thức đó, trang Portfolio này đối với em không chỉ là một bài tập nộp để lấy điểm
+                    mà còn là một cuốn nhật ký ghi lại sự trưởng thành, là minh chứng cho việc mình đã mở ra tư duy thích ứng bền vững trong kỷ nguyên số.
+                    Em tin rằng, những kỹ năng và bài học đạo đức rút ra từ học phần này sẽ là bệ phóng vững chắc cho hành trình học tập
+                    và nghiên cứu chuyên sâu của mình trong tương lai.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-info">
+            <p>© 2026 Lê Thị Thuý Hường - Sản phẩm thuộc học phần Nhập môn Công nghệ số và Ứng dụng Trí tuệ nhân tạo.</p>
+        </div>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+            } else {
+                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            }
+        });
+    </script>
+</body>
+</html>

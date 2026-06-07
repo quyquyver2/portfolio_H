@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giới thiệu - Lê Thị Thuý Hường</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            -webkit-text-size-adjust: 100%;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f6f8;
+        }
+
+        header {
+            background: white;
+            color: #1a1a1a;
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem 2rem;
+            position: relative;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #1a1a1a;
+            font-size: 1.5rem;
+            cursor: pointer;
+            position: absolute;
+            right: 2rem;
+        }
+
+        .menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .menu a {
+            color: #1a1a1a;
+            text-decoration: none;
+            transition: opacity 0.3s;
+            font-weight: 500;
+            font-size: 1.05rem;
+            position: relative;
+        }
+
+        .menu a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 0;
+            height: 2px;
+            background: #27AE60;
+            transition: width 0.3s ease;
+        }
+
+        .menu a.active::after {
+            width: 100%;
+        }
+
+        .menu a:hover {
+            opacity: 0.7;
+        }
+
+        .about-hero {
+            background: linear-gradient(135deg, #fdf9fc 0%, #f7f0f6 50%, #f0e8f2 100%);
+            padding: 3.5rem 1rem 4rem;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(194, 24, 91, 0.08);
+        }
+
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: 5%;
+            width: 420px;
+            height: 420px;
+            background: radial-gradient(circle, rgba(233, 30, 99, 0.1) 0%, transparent 65%);
+            pointer-events: none;
+        }
+
+        .about-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 360px;
+            height: 360px;
+            background: radial-gradient(circle, rgba(156, 39, 176, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .about-hero-inner {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            justify-content: flex-start;
+            width: 96%;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-page {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem 3rem 2rem;
+        }
+
+        .about-profile {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            flex-shrink: 0;
+        }
+
+        .about-avatar {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #fff;
+            box-shadow: 0 0 0 3px rgba(255, 105, 135, 0.35), 0 6px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .about-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-top: 0.75rem;
+            padding: 0.35rem 1rem;
+            background: #f5f5f5;
+            border: 1px solid #e0e0e0;
+            border-radius: 20px;
+            color: #444;
+            font-size: 1.05rem;
+        }
+
+        .about-badge::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            background: #27AE60;
+            border-radius: 50%;
+        }
+
+        .about-intro-header {
+            color: #1a1a1a;
+        }
+
+        .about-greeting {
+            display: inline-block;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #c2185b;
+            background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+            padding: 0.5rem 1.35rem;
+            border-radius: 8px;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(194, 24, 91, 0.15);
+            box-shadow: 0 4px 14px rgba(194, 24, 91, 0.1);
+        }
+
+        .about-intro-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+        }
+
+        .about-subtitle {
+            font-size: 1.35rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .about-card-wrapper {
+            width: calc(100% - 12%);
+            margin: 2rem 0 0 12%;
+            padding: 0;
+        }
+
+        .about-card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .about-section {
+            padding: 1.75rem 2rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .about-section:last-child {
+            border-bottom: none;
+        }
+
+        .about-section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .about-section-num {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            background: #fce4ec;
+            color: #c2185b;
+            font-weight: 700;
+            font-size: 1.05rem;
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+
+        .about-section-header h2 {
+            font-size: 1.3rem;
+            color: #1a1a1a;
+            font-weight: 700;
+        }
+
+        .about-section p {
+            font-size: 1.35rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        .about-section p:last-child {
+            margin-bottom: 0;
+        }
+
+        .about-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .about-section ul li {
+            font-size: 1.35rem;
+            line-height: 1.8;
+            color: #555;
+            padding-left: 1.25rem;
+            position: relative;
+            margin-bottom: 0.75rem;
+        }
+
+        .about-section ul li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c2185b;
+            font-weight: bold;
+        }
+
+        .about-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .about-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.45rem 1rem;
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 20px;
+            font-size: 1.05rem;
+            color: #444;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .footer-info {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 44px;
+                min-height: 44px;
+                z-index: 102;
+            }
+
+            .menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.98);
+                flex-direction: column;
+                gap: 0;
+                padding: 0.5rem 0;
+                z-index: 101;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            }
+
+            .menu.active {
+                display: flex;
+            }
+
+            .menu li {
+                width: 100%;
+            }
+
+            .menu a {
+                display: block;
+                padding: 0.85rem 1.25rem;
+                border-bottom: 1px solid rgba(0,0,0,0.08);
+                font-size: 1rem;
+            }
+
+            nav {
+                padding: 0.75rem 1rem;
+            }
+
+            .menu-toggle {
+                right: 1rem;
+            }
+
+            .about-hero {
+                padding: 2rem 1rem 2.5rem;
+            }
+
+            .about-hero-inner {
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 1.25rem;
+            }
+
+            .about-profile {
+                align-items: center;
+            }
+
+            .about-greeting {
+                font-size: 1.25rem;
+            }
+
+            .about-intro-header h1 {
+                font-size: 1.85rem;
+                white-space: normal;
+            }
+
+            .about-subtitle {
+                font-size: 1.15rem;
+            }
+
+            .about-page {
+                width: 100%;
+                padding: 1.25rem 0.75rem 2rem;
+            }
+
+            .about-card-wrapper {
+                width: 100%;
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            .about-section {
+                padding: 1.25rem 1rem;
+            }
+
+            .about-section p,
+            .about-section ul li {
+                font-size: 1.1rem;
+            }
+
+            .about-section-header h2 {
+                font-size: 1.15rem;
+            }
+
+            .about-tag {
+                font-size: 0.95rem;
+            }
+
+            footer {
+                padding: 1.5rem 1rem;
+            }
+
+            footer p {
+                font-size: 0.85rem;
+                line-height: 1.6;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .about-avatar {
+                width: 110px;
+                height: 110px;
+            }
+
+            .about-intro-header h1 {
+                font-size: 1.6rem;
+            }
+
+            .about-greeting {
+                font-size: 1.1rem;
+                padding: 0.4rem 1rem;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <ul class="menu" id="navMenu">
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="about.html" class="active">Giới thiệu</a></li>
+                <li><a href="projects.html">Dự án</a></li>
+                <li><a href="summary.html">Tổng kết</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="about-hero">
+        <div class="about-hero-inner">
+            <div class="about-profile">
+                <img src="anh_1.jpg" alt="Lê Thị Thuý Hường" class="about-avatar">
+                <span class="about-badge">Sinh viên</span>
+            </div>
+            <div class="about-intro-header">
+                <p class="about-greeting">Xin chào!</p>
+                <h1>Lê Thị Thuý Hường</h1>
+                <p class="about-subtitle">Sinh viên Y khoa năm 4</p>
+            </div>
+        </div>
+    </section>
+
+    <main class="about-page">
+        <div class="about-card-wrapper">
+            <div class="about-card">
+                <div class="about-section">
+                    <div class="about-section-header">
+                        <span class="about-section-num">01</span>
+                        <h2>Giới thiệu</h2>
+                    </div>
+                    <p>
+                        Xin chào! Em là <strong>Lê Thị Thuý Hường</strong>, <strong>sinh viên Y khoa năm 4</strong>.
+                    </p>
+                    <p>
+                        Là một sinh viên Y khoa thường xuyên đối mặt với khối lượng khổng lồ các tài liệu chuyên ngành,
+                        giáo trình và slides lâm sàng, em hiểu rằng việc làm chủ công nghệ số và ứng dụng AI là chiếc chìa
+                        khóa quan trọng để tối ưu hóa hiệu suất học tập.
+                    </p>
+                    <p>
+                        <strong>Sở thích:</strong> Nghe nhạc, ca hát, bóng chuyền, dạo phố.
+                    </p>
+                    <div class="about-tags">
+                        <span class="about-tag">🩺 Y khoa</span>
+                        <span class="about-tag">🤖 Trí tuệ nhân tạo (AI)</span>
+                        <span class="about-tag">🎵 Nghe nhạc</span>
+                        <span class="about-tag">🎤 Ca hát</span>
+                        <span class="about-tag">🏐 Bóng chuyền</span>
+                        <span class="about-tag">🚶 Dạo phố</span>
+                    </div>
+                </div>
+
+                <div class="about-section">
+                    <div class="about-section-header">
+                        <span class="about-section-num">02</span>
+                        <h2>Mục tiêu học tập</h2>
+                    </div>
+                    <ul>
+                        <li>Nâng cao tư duy tổ chức, sắp xếp dữ liệu học tập một cách khoa học để giải quyết tình trạng quá tải tài liệu.</li>
+                        <li>Nghiên cứu cách viết prompt cho AI nhằm hỗ trợ dịch thuật y văn, tổng hợp kiến thức và học tập hiệu quả hơn.</li>
+                        <li>Hướng tới trở thành một bác sĩ vừa giỏi chuyên môn vừa biết ứng dụng AI vào trong thực hành lâm sàng.</li>
+                    </ul>
+                </div>
+
+                <div class="about-section">
+                    <div class="about-section-header">
+                        <span class="about-section-num">03</span>
+                        <h2>Định hướng nghề nghiệp</h2>
+                    </div>
+                    <p>
+                        Em hướng đến hình ảnh một bác sĩ có kiến thức chuyên môn vững vàng, tư duy đổi mới và tinh thần
+                        học tập suốt đời. Em mong muốn kết hợp y học hiện đại với công nghệ số để chăm sóc bệnh nhân
+                        tốt hơn và góp phần nâng cao chất lượng y tế.
+                    </p>
+                </div>
+
+                <div class="about-section">
+                    <div class="about-section-header">
+                        <span class="about-section-num">04</span>
+                        <h2>Mục tiêu của Portfolio</h2>
+                    </div>
+                    <p>
+                        Trang web này em lập ra để hệ thống hóa và lưu trữ lại các sản phẩm, bài tập thực hành trong
+                        suốt học phần Nhập môn Công nghệ số.
+                    </p>
+                    <p>
+                        Đây cũng là minh chứng rõ ràng cho những kỹ năng số đã tích lũy, giúp bản thân dễ dàng nhìn lại,
+                        đánh giá và chia sẻ lộ trình phát triển cá nhân.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-info">
+            <p>© 2026 Lê Thị Thuý Hường - Sản phẩm thuộc học phần Nhập môn Công nghệ số và Ứng dụng Trí tuệ nhân tạo.</p>
+            <p style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.7;">Digital Portfolio | Nâng cao năng lực số trong thời đại học tập hiện đại</p>
+        </div>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+            } else {
+                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            }
+        });
+    </script>
+</body>
+</html>
